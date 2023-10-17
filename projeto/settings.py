@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zevendas',
+        'NAME': 'bdvendas_py',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  
-        'PORT': '3306', 
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
