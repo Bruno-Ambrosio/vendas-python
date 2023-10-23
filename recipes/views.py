@@ -13,9 +13,9 @@ def login(request):
         }
     )
 
-def menu(request):
+def cliente_cadastro(request):
     return render(
-        request, 'recipes/pages/menu.html', context={
-        'name': 'menu'
+        request, 'recipes/pages/cliente/cadastro.html', context={
+        'name': 'cliente_cadastro'
         }
     )
