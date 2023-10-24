@@ -2,14 +2,15 @@
   <div class="container bg-light">
     <div class="card my-2">
         <div class="card-body">
-            <form action="{%url'cliente_cadastro'%}" method="POST">
+            {% comment %} <form action="{%url'cliente_cadastro'%}" method="POST"> {% endcomment %}
+            <form action="." method="POST">
                 {% csrf_token %}
               <div class="row">
                 <div class="col col-lg-6">
                   <label>Nome do cliente</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu nome"
                     value=""
                     type="text"
                     required
@@ -20,7 +21,7 @@
                   <label>RG</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu RG"
                     value=""
                     type="text"
                     required
@@ -31,7 +32,7 @@
                   <label>CPF</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu CPF"
                     value=""
                     type="text"
                     name="cliente_cpf"
@@ -42,7 +43,7 @@
                   <label>Email</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu email"
                     value=""
                     type="text"
                    required
@@ -53,7 +54,7 @@
                   <label>Número de contato</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu número de contato"
                     value=""
                     type="text"
                     required
@@ -64,7 +65,7 @@
                   <label>CEP</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu CEP"
                     value=""
                     type="text"
                     required
@@ -75,7 +76,7 @@
                   <label>Logradouro</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu logradouro"
                     value=""
                     type="text"
                     required
@@ -86,7 +87,7 @@
                   <label>Número</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu número"
                     value=""
                     type="text"
                     required
@@ -97,7 +98,7 @@
                   <label>Bairro</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira seu bairro"
                     value=""
                     type="text"
                     required
@@ -108,7 +109,7 @@
                   <label>Complemento</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira um complemento"
                     value=""
                     type="text"
                     required
@@ -119,7 +120,7 @@
                   <label>Cidade</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira o Nome da sua cidade"
                     value=""
                     type="text"
                     required
@@ -130,7 +131,7 @@
                   <label>Estado</label>
                   <input
                     class="form-control"
-                    placeholder=""
+                    placeholder="Insira o Nome do seu estado"
                     value=""
                     type="text"
                     required
@@ -145,10 +146,10 @@
         <div class="card-body">
             <div class="row justify-content-end">
                 <div class="col-auto">
-                    <button class="btn btn-danger">Cancelar</button>
+                    <button class="btn btn-danger" id='cancelar'>Cancelar</button>
                 </div>
                 <div class="col-auto">
-                    <button class="btn btn-primary">Salvar cliente</button>
+                    <button class="btn btn-primary" id="enviar">Salvar cliente</button>
                 </div>
             </div>
         </div>
