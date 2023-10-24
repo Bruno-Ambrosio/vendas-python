@@ -57,10 +57,10 @@ class Funcionarios(models.Model):
         db_table = 'tb_funcionarios'
     
 class Produtos(models.Model):
-    fornecedor = models.ForeignKey(Fornecedores, on_delete=models.CASCADE, default=1)
     descricao = models.CharField(max_length=100)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     qtd_estoque = models.IntegerField()
+    for_id = models.IntegerField()
     
     class Meta:
         db_table = 'tb_produtos'
@@ -73,12 +73,3 @@ class Vendas(models.Model):
     
     class Meta:
         db_table = 'tb_vendas'
-        
-class Itens(models.Model):
-    venda = models.ForeignKey(Vendas, on_delete=models.CASCADE)
-    produto = models.ForeignKey(Produtos, on_delete=models.CASCADE)
-    qtd = models.IntegerField(default=1)
-    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
-    
-    class Meta:
-        db_table = 'tb_itens'
