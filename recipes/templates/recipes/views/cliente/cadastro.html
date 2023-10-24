@@ -1,1 +1,157 @@
-<div>cadastro de cliente</div>
+<div>
+  <div class="container bg-light">
+    <div class="card my-2">
+        <div class="card-body">
+            <form action="{%url'cliente_cadastro'%}" method="POST">
+                {% csrf_token %}
+              <div class="row">
+                <div class="col col-lg-6">
+                  <label>Nome do cliente</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_nome"
+                  />
+                </div>
+                <div class="col col-lg-3">
+                  <label>RG</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_rg"
+                  />
+                </div>
+                <div class="col col-lg-3">
+                  <label>CPF</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    name="cliente_cpf"
+                    required
+                  />
+                </div>
+                <div class="col col-lg-4">
+                  <label>Email</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                   required
+                    name="cliente_email"
+                  />
+                </div>
+                <div class="col col-lg-4">
+                  <label>Número de contato</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_contato"
+                  />
+                </div>
+                <div class="col col-lg-4">
+                  <label>CEP</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name='cliente_cep'
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Logradouro</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_logradouro"
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Número</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name='cliente_numero'
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Bairro</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name='cliente_bairro'
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Complemento</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name='cliente_complemento'
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Cidade</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_cidade"
+                  />
+                </div>
+                <div class="col col-lg-6">
+                  <label>Estado</label>
+                  <input
+                    class="form-control"
+                    placeholder=""
+                    value=""
+                    type="text"
+                    required
+                    name="cliente_estado"
+                  />
+                </div>
+              </div>
+            </form>
+        </div>
+    </div>
+    <div class="card bg-light">
+        <div class="card-body">
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <button class="btn btn-danger">Cancelar</button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary">Salvar cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
