@@ -29,3 +29,34 @@ def lista_produtos(request):
     produtos = Produtos.objects.all()
     produtos_dict = [{'nome': produto.descricao} for produto in produtos]
     return JsonResponse(f'Lista de produtos: {produtos_dict}', safe=False)
+
+def cadastrar_cliente(request):
+    if request.method == 'POST':
+        cliente_dict = cliente_map(request)
+        Clientes.objects.create(cliente_dict)
+
+def cliente_map(request):
+
+    campos_vazios = []
+
+    for campo, valor in request.POST.items():
+        if valor == '':
+            campos_vazios.append(campo)
+
+    cliente = {
+        'nome': request.POST['nome'],
+        'rg': request.POST['rg'],
+        'cpf': request.POST['cpf'],
+        'email': request.POST['email'],
+        'telefone': request.POST['telefone'],
+        'celular': request.POST['celular'],
+        'cep': request.POST['cep'],
+        'endereco': request.POST['endereco'],
+        'numero': request.POST['numero'],
+        'complemento': request.POST['complemento'],
+        'bairro': request.POST['bairro'],
+        'cidade': request.POST['cidade'],
+        'estado': request.POST['estado']
+    }
+
+    return cliente

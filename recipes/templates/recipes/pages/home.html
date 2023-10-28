@@ -11,5 +11,9 @@
 
     {% include 'recipes/partials/footer.html' %}
 
+    <form action="{% url 'cadastrar_cliente' %}">
+        <input type="text" name="nome" id="">
+        <button type="submit"></button>
+    </form>
 </body>
 </html>
