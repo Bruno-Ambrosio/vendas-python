@@ -11,8 +11,14 @@
 
     {% include 'recipes/partials/footer.html' %}
 
-    <form action="{% url 'cadastrar_cliente' %}">
+    <form action="{% url 'cadastrar_cliente' %}" method="post">
+        {% csrf_token %}
         <input type="text" name="nome" id="">
+        <input type="text" name="cpf" id="">
+        <input type="text" name="rg" id="">
+        <input type="text" name="email" id="">
+        <input type="text" name="numero" id="">
+        <input type="text" name="senha22" id="">
         <button type="submit"></button>
     </form>
 </body>

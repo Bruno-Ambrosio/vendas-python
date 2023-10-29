@@ -2,9 +2,9 @@ from django.db import models
 
 class Clientes(models.Model):
     nome = models.CharField(max_length=100, null=False)
-    rg = models.CharField(max_length=30, null=False)
-    cpf = models.CharField(max_length=20, null=False)
-    email = models.CharField(max_length=200, null=False)
+    rg = models.CharField(max_length=30, null=False, unique=True)
+    cpf = models.CharField(max_length=20, null=False, unique=True)
+    email = models.CharField(max_length=200, null=False, unique=True)
     telefone = models.CharField(max_length=30)
     celular = models.CharField(max_length=30)
     cep = models.CharField(max_length=100)
@@ -20,8 +20,8 @@ class Clientes(models.Model):
     
 class Fornecedores(models.Model):
     nome = models.CharField(max_length=100, null=False)
-    cnpj = models.CharField(max_length=20, null=False)
-    email = models.CharField(max_length=200)
+    cnpj = models.CharField(max_length=20, null=False, unique=True)
+    email = models.CharField(max_length=200, unique=True)
     telefone = models.CharField(max_length=30)
     celular = models.CharField(max_length=30)
     cep = models.CharField(max_length=100)
@@ -37,9 +37,9 @@ class Fornecedores(models.Model):
     
 class Funcionarios(models.Model):
     nome = models.CharField(max_length=100, null=False)
-    rg = models.CharField(max_length=30, null=False)
-    cpf = models.CharField(max_length=20, null=False)
-    email = models.CharField(max_length=200, null=False)
+    rg = models.CharField(max_length=30, null=False, unique=True)
+    cpf = models.CharField(max_length=20, null=False, unique=True)
+    email = models.CharField(max_length=200, null=False, unique=True)
     senha = models.CharField(max_length=10, null=False)
     cargo = models.CharField(max_length=100, null=False)
     nivel_acesso = models.CharField(max_length=50)
