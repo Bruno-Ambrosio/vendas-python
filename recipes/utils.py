@@ -4,7 +4,7 @@ class ClienteUtils():
 
     def __init__(self):
         self.cliente = {}
-        self.cliente_campos = ['nome', 'rg', 'cpf', 'email', 'telefone', 'celular', 'cep', 'endereco', 'numero', 'complemento', 'bairro', 'cidade', 'estado']
+        self.cliente_campos = ['cliente_nome', 'cliente_rg', 'cliente_cpf', 'cliente_email',  'cliente_contato', 'cliente_cep', 'cliente_endereco', 'cliente_numero', 'cliente_complemento', 'cliente_bairro', 'cliente_cidade', 'cliente_estado']
 
     def obter_objeto(self, request):
 
