@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zevendas',
+        'NAME': 'bdvendas_py',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  
-        'PORT': '3306', 
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -108,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+import os
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -127,7 +128,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'base_static',
-    
+    BASE_DIR  / 'recipes'/ 'static'
 ]
 
 STATIC_ROOT = BASE_DIR / 'static'

@@ -1,0 +1,7 @@
+Instalar máquina virtual na raiz do projeto (/vendas-python)
+
+pip install virtualenv
+virtualenv venv
+set-executionpolicy remotesigned
+venv/Scripts/Activate
+python manage.py runserver
