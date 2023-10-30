@@ -1,40 +1,18 @@
-<!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html>
-
-<head>
-  {% load static %}
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-  <link rel="stylesheet" href="{% static 'recipes/style.css/login.css' %}">
-</head>
-
+    <head>
+        <!-- HEAD -->
+        {% include 'recipes/application/head.html' %}
+        <title>Página de login</title>
+    </head>
 <body>
-  <div class="wrapper">
-    <form action="#">
-      <h2>Login</h2>
-      <div class="input-field">
-        <input type="text" required />
-        <label>Entrar com e-mail</label>
-      </div>
-      <div class="input-field">
-        <input type="password" required />
-        <label>Digite sua senha</label>
-      </div>
-      <div class="forget">
-        <label for="remember">
-          <input type="checkbox" id="Relembre-me" />
-          <p>Relembre-me</p>
-        </label>
-        <a href="#">Esqueceu sua senha?</a>
-      </div>
-      <button type="submit">Entrar</button>
-      <div class="register">
-        <p>Ainda não tem conta? <a href="#">Registrar-se</a></p>
-      </div>
-    </form>
-  </div>
+    <!-- Cabeçalho -->
+    {% include 'recipes/layout/header.html' %} 
+    <!-- Conteúdo -->
+    {% include 'recipes/views/login.html' %}
+    <!-- Rodapé -->
+    {% include 'recipes/layout/footer.html' %}
+    <!-- Scripts Globais -->
+    {% include 'recipes/application/end.html' %}
+    <!-- Scripts adicionais[...] -->
 </body>
-
 </html>

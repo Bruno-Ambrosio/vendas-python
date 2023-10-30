@@ -1,25 +1,18 @@
-{% include 'recipes/partials/head.html' %}
-
+<html>
+    <head>
+        <!-- HEAD -->
+        {% include 'recipes/application/head.html' %}
+        <title>Página inicial</title>
+    </head>
 <body>
-    {% include 'recipes/partials/header.html' %} 
-
-    <main class="main-content-container">
-        <div class="main-content main-content-list container">
-            {% include 'recipes/partials/recipe.html' %}
-        </div>
-    </main>
-
-    {% include 'recipes/partials/footer.html' %}
-
-    <form action="{% url 'cadastrar_cliente' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="nome" id="">
-        <input type="text" name="cpf" id="">
-        <input type="text" name="rg" id="">
-        <input type="text" name="email" id="">
-        <input type="text" name="numero" id="">
-        <input type="text" name="senha22" id="">
-        <button type="submit"></button>
-    </form>
+    <!-- Cabeçalho -->
+    {% include 'recipes/layout/header.html' %} 
+    <!-- Conteúdo -->
+    {% include 'recipes/views/home.html' %} 
+    <!-- Rodapé -->
+    {% include 'recipes/layout/footer.html' %} 
+    <!-- Scripts Globais -->
+    {% include 'recipes/application/end.html' %}
+    <!-- Scripts adicionais[...] -->
 </body>
 </html>

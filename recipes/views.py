@@ -20,10 +20,24 @@ def login(request):
         }
     )
 
-def menu(request):
+def cliente_cadastro(request):
     return render(
-        request, 'recipes/pages/menu.html', context={
-        'name': 'menu'
+        request, 'recipes/pages/cliente/cadastro.html', context={
+        'name': 'cliente_cadastro'
+        }
+    )
+    
+def fornecedor_cadastro(request):
+    return render(
+        request, 'recipes/pages/fornecedor/cadastro.html', context={
+        'name': 'fornecedor_cadastro'
+        }
+    )
+    
+def funcionario_cadastro(request):
+    return render(
+        request, 'recipes/pages/funcionario/cadastro.html', context={
+        'name': 'funcionario_cadastro'
         }
     )
 
