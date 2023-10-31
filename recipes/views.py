@@ -21,6 +21,17 @@ def login(request):
     )
 
 def cliente_cadastro(request):
+    if request.method == 'POST':
+        try:
+            cliente = cliente_utils.obter_objeto(request)
+            validar_cliente.campos_obrigatorios(cliente)
+            validar_cliente.campos_unicos(cliente)
+            Clientes.objects.create(**cliente)
+            return HttpResponse(f'Cliente salvo!\n"{cliente}"')
+        except CampoObrigatorioVazio as e:
+            return HttpResponseBadRequest(e)
+        except CadastroJaExiste as e:
+            return HttpResponseBadRequest(e)
     return render(
         request, 'recipes/pages/cliente/cadastro.html', context={
         'name': 'cliente_cadastro'
@@ -28,6 +39,7 @@ def cliente_cadastro(request):
     )
     
 def fornecedor_cadastro(request):
+    
     return render(
         request, 'recipes/pages/fornecedor/cadastro.html', context={
         'name': 'fornecedor_cadastro'
@@ -40,29 +52,4 @@ def funcionario_cadastro(request):
         'name': 'funcionario_cadastro'
         }
     )
-
-def lista_clientes(request):
-    clientes = Clientes.objects.all()
-
-def lista_produtos(request):
-    produtos = Produtos.objects.all()
-    produtos_dict = [{'nome': produto.descricao} for produto in produtos]
-
-def cadastrar_cliente(request):
-    if request.method == 'POST':
-        try:
-            cliente = cliente_utils.obter_objeto(request)
-            validar_cliente.campos_obrigatorios(cliente)
-            validar_cliente.campos_unicos(cliente)
-            Clientes.objects.create(**cliente)
-            return HttpResponse(f'Cliente salvo!\n"{cliente}"')
-        except CampoObrigatorioVazio as e:
-            return HttpResponseBadRequest(e)
-        except CadastroJaExiste as e:
-            return HttpResponseBadRequest(e)
-        
-# def cadastrar_fornecedor(request):
-#     if request.method == 'POST':
-#             Fornecedores.objects.create(**fornecedores)
-#             return HttpResponse(f'Cliente salvo!\n"{fornecedores}"')
       
