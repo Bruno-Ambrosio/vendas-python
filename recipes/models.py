@@ -64,9 +64,9 @@ class Produtos(models.Model):
     
 class Vendas(models.Model):
     cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE)
-    venda_data_venda = models.DateTimeField(null=False)
-    venda_total_venda = models.DecimalField(max_digits=10, decimal_places=2, null=False)
-    venda_observacoes = models.CharField(max_length=255)
+    data_venda = models.DateTimeField(null=False)
+    total_venda = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    observacoes = models.CharField(max_length=255)
     
     class Meta:
         db_table = 'tb_vendas'
