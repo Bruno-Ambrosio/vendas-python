@@ -18,46 +18,44 @@ class Clientes(models.Model):
         db_table = 'tb_clientes'
     
 class Fornecedores(models.Model):
-    nome = models.CharField(max_length=100, null=False)
-    cnpj = models.CharField(max_length=20, null=False, unique=True)
-    email = models.CharField(max_length=200, unique=True)
-    telefone = models.CharField(max_length=30)
-    celular = models.CharField(max_length=30)
-    cep = models.CharField(max_length=100)
-    endereco = models.CharField(max_length=255)
-    numero = models.IntegerField()
-    complemento = models.CharField(max_length=200)
-    bairro = models.CharField(max_length=100)
-    cidade = models.CharField(max_length=100)
-    estado = models.CharField(max_length=2)
+    fornecedor_nome = models.CharField(max_length=100, null=False, default="")
+    fornecedor_cnpj = models.CharField(max_length=20, null=False, unique=True, default="")
+    fornecedor_email = models.CharField(max_length=200, unique=True, default="")
+    fornecedor_contato = models.CharField(max_length=30)
+    fornecedor_cep = models.CharField(max_length=100)
+    fornecedor_endereco = models.CharField(max_length=255)
+    fornecedor_numero = models.IntegerField()
+    fornecedor_complemento = models.CharField(max_length=200)
+    fornecedor_bairro = models.CharField(max_length=100)
+    fornecedor_cidade = models.CharField(max_length=100)
+    fornecedor_estado = models.CharField(max_length=2)
     
     class Meta:
         db_table = 'tb_fornecedores'
     
 class Funcionarios(models.Model):
-    nome = models.CharField(max_length=100, null=False)
-    rg = models.CharField(max_length=30, null=False, unique=True)
-    cpf = models.CharField(max_length=20, null=False, unique=True)
-    email = models.CharField(max_length=200, null=False, unique=True)
-    senha = models.CharField(max_length=10, null=False)
-    cargo = models.CharField(max_length=100, null=False)
-    nivel_acesso = models.CharField(max_length=50)
-    telefone = models.CharField(max_length=30)
-    celular = models.CharField(max_length=30)
-    cep = models.CharField(max_length=100)
-    endereco = models.CharField(max_length=255)
-    numero = models.IntegerField()
-    complemento = models.CharField(max_length=200)
-    bairro = models.CharField(max_length=100)
-    cidade = models.CharField(max_length=100)
-    estado = models.CharField(max_length=2)
+    fornecedor_nome = models.CharField(max_length=100, null=False, default="")
+    fornecedor_rg = models.CharField(max_length=30, null=False, unique=True, default="")
+    fornecedor_cpf = models.CharField(max_length=20, null=False, unique=True, default="")
+    fornecedor_email = models.CharField(max_length=200, null=False, unique=True, default="")
+    fornecedor_senha = models.CharField(max_length=10, null=False)
+    fornecedor_cargo = models.CharField(max_length=100, null=False)
+    fornecedor_nivel_acesso = models.CharField(max_length=50)
+    fornecedor_contato = models.CharField(max_length=30)
+    fornecedor_cep = models.CharField(max_length=100)
+    fornecedor_endereco = models.CharField(max_length=255)
+    fornecedor_numero = models.IntegerField()
+    fornecedor_complemento = models.CharField(max_length=200)
+    fornecedor_bairro = models.CharField(max_length=100)
+    fornecedor_cidade = models.CharField(max_length=100)
+    fornecedor_estado = models.CharField(max_length=2)
     
     class Meta:
         db_table = 'tb_funcionarios'
     
 class Produtos(models.Model):
     fornecedor = models.ForeignKey(Fornecedores, on_delete=models.CASCADE, default=1)
-    descricao = models.CharField(max_length=100, null=False)
+    produto_descricao = models.CharField(max_length=100, null=False)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     qtd_estoque = models.IntegerField(null=False)
     
