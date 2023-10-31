@@ -3,8 +3,9 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from .models import Produtos, Clientes, Fornecedores
 from .exceptions import CampoObrigatorioVazio, CadastroJaExiste
 from .validations import ValidarCliente
-from .utils import ClienteUtils
+from .utils import ClienteUtils, FornecedorUtils
 
+fornecedor_utils = FornecedorUtils()
 cliente_utils = ClienteUtils()
 validar_cliente = ValidarCliente()
 
@@ -23,7 +24,7 @@ def login(request):
 def cliente_cadastro(request):
     if request.method == 'POST':
         try:
-            cliente = cliente_utils.obter_objeto(request)
+            cliente = cliente_utils.obter_cliente(request)
             validar_cliente.campos_obrigatorios(cliente)
             validar_cliente.campos_unicos(cliente)
             Clientes.objects.create(**cliente)
@@ -39,7 +40,15 @@ def cliente_cadastro(request):
     )
     
 def fornecedor_cadastro(request):
-    
+    if request.method == 'POST':
+        try:
+            fornecedor = fornecedor_utils.obter_fornecedor(request)
+            Fornecedores.objects.create(**fornecedor)
+            return HttpResponse(f'Fornecedor!\n"{fornecedor}"')
+        except CampoObrigatorioVazio as e:
+            return HttpResponseBadRequest(e)
+        except CadastroJaExiste as e:
+            return HttpResponseBadRequest(e) 
     return render(
         request, 'recipes/pages/fornecedor/cadastro.html', context={
         'name': 'fornecedor_cadastro'
@@ -52,4 +61,3 @@ def funcionario_cadastro(request):
         'name': 'funcionario_cadastro'
         }
     )
-      

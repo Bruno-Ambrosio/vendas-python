@@ -2,7 +2,6 @@
   <div class="container bg-light">
     <div class="card my-2">
         <div class="card-body">
-            {% comment %} <form action="{%url'cliente_cadastro'%}" method="POST"> {% endcomment %}
             <form action="{%url 'cliente_cadastro' %}" method="POST">
                 {% csrf_token %}
               <div class="row">

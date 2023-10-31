@@ -7,6 +7,6 @@ urlpatterns = [
     path('login', login),
     path('home', home),
     path('cliente/cadastro', cliente_cadastro, name='cliente_cadastro'),
-    path('funcionario/cadastro', funcionario_cadastro),
-    path('fornecedor/cadastro', fornecedor_cadastro),
+    path('funcionario/cadastro', funcionario_cadastro, name='funcionario_cadastro'),
+    path('fornecedor/cadastro', fornecedor_cadastro, name='fornecedor_cadastro'),
 ]
