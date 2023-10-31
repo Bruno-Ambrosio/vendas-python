@@ -61,5 +61,3 @@ def funcionario_cadastro(request):
         'name': 'funcionario_cadastro'
         }
     )
-
-

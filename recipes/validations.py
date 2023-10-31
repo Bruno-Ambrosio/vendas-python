@@ -6,7 +6,7 @@ class ValidarCliente():
     def campos_obrigatorios(self, cliente):
 
         # Mapeamento dos campos obrigatórios do objeto
-        campos_obrigatorios = ['cliente_nome', 'cliente_rg', 'cliente_cpf', 'cliente_email', 'cliente_numero']
+        campos_obrigatorios = ['cliente_nome', 'cliente_rg', 'cliente_cpf', 'cliente_email', 'cliente_contato']
 
         # Percorrendo a lista de campos vazios, se algum campo obrigatório estiver vazio ele retorna exceção
         for campo in campos_obrigatorios:
@@ -18,7 +18,7 @@ class ValidarCliente():
     def campos_unicos(self, cliente):
 
         # Mapeamento dos campos únicos do objeto
-        campos_unicos = ['cliente_rg', 'cliente_cpf', 'cliente_email', 'cliente_numero']
+        campos_unicos = ['cliente_rg', 'cliente_cpf', 'cliente_email', 'cliente_contato']
 
         # Percorrendo o dicionário do objeto, se houver campos unicos repetidos ele retorna exceção
         for campo in campos_unicos:
