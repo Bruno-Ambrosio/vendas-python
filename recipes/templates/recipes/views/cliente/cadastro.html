@@ -3,7 +3,7 @@
     <div class="card my-2">
         <div class="card-body">
             {% comment %} <form action="{%url'cliente_cadastro'%}" method="POST"> {% endcomment %}
-            <form action="{%url 'cadastrar_cliente' %}" method="POST">
+            <form action="{%url 'cadastrar_fornecedor' %}" method="POST">
                 {% csrf_token %}
               <div class="row">
                 <div class="col col-lg-6">
@@ -139,8 +139,8 @@
                   />
                 </div>
               </div>
-               <div class="card bg-light">
-        <div class="card-body" style='padding-top:10px;padding-bottom: 10px; margin: 10px'>
+               <div class="card bg-light" style='margin-top:10px'>
+        <div class="card-body" style='padding-top:10px;'>
             <div class="row justify-content-end" >
                 <div class="col-auto">
                     <button class="btn btn-danger" id='cancelar'>Cancelar</button>
