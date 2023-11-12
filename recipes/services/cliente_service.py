@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 
-class ClienteUtils():
+class ClienteService():
 
     def __init__(self):
         self.cliente = {}
