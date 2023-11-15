@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import ClienteForms, FornecedorForms, FuncionarioForms
+from .forms import ClienteForms, FornecedorForms, FuncionarioForms, UserForms, LoginForms
 from .models import Clientes, Fornecedores, Funcionarios
-
-cliente_form = ClienteForms()
-fornecedor_form = FornecedorForms()
-funcionario_form = FuncionarioForms()
-
+from django.contrib.auth import authenticate, login as login_django
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def home(request):
     return render(request, 'recipes/pages/home.html', context={
@@ -13,11 +11,60 @@ def home(request):
     })
 
 def login(request):
-    return render(
-        request, 'recipes/pages/login.html', context={
-        'name': 'login'
-        }
+    if request.method == 'POST':
+        form = LoginForms(request.POST)
+        try:
+            if form.is_valid():
+                usuario = form.cleaned_data['username']
+                senha = form.cleaned_data['password']
+                print(usuario, ' ', senha)
+                user = authenticate(username=usuario, password=senha)
+                print(user)
+                if user is not None:
+                    login_django(request, user)
+                    messages.success(request, 'Logado com sucesso!')
+                    return redirect('/login')
+                else:
+                    messages.warning(request, 'Usuário ou senha inválido(s)!')
+                    return redirect('/login')
+            else:
+                messages.warning(request, 'Usuário ou senha inválido(s)!')
+                return redirect('/login')
+        except:
+            messages.error(request, 'Ocorreu um erro ao processar o login.')
+            return redirect('/login')
+    else:
+        form = LoginForms()
+        return render(
+            request, 'recipes/pages/login.html', context={
+            'name': 'login',
+            'form': form,
+            }
     )
+
+def usuario_cadastro(request):
+    if request.method == "POST":
+        form = UserForms(request.POST)
+        try:
+            if form.is_valid():
+                usuario = form.cleaned_data['username']
+                senha = form.cleaned_data['password']
+                email = form.cleaned_data['email']
+                nome = form.cleaned_data['first_name']
+                sobrenome = form.cleaned_data['last_name']
+                user = User.objects.create_user(username=usuario, password=senha, email=email, first_name=nome, last_name=sobrenome)
+                user.save()
+                return redirect("/")
+        except:
+            pass
+    else:
+        form = UserForms()
+        return render(
+            request, 'recipes/pages/usuario/cadastro.html', context={
+            'name': 'usuario_cadastro',
+            'form': form
+            }
+        )
 
 def cliente_cadastro(request):
     if request.method == "POST":
