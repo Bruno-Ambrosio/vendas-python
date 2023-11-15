@@ -1,3 +1,1 @@
 print("main")
-
-print(' jioadoaidaoidnsnza')
