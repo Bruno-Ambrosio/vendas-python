@@ -63,6 +63,16 @@ h2 {
   pointer-events: none;
   transition: 0.15s ease;
 }
+.field.label_tag {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-110%);
+    color: #fff;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.15s ease;
+}
 
 .input-field input {
   width: 100%;
@@ -84,6 +94,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  justify-content: right;
   margin: 25px 0 35px 0;
   color: #fff;
 }

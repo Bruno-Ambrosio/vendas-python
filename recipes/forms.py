@@ -9,7 +9,7 @@ class UserForms(forms.ModelForm):
         labels = {
             'username': 'Usuário',
             'password': 'Senha',
-            'email': 'E-mail',
+            'email': 'Email',
             'first_name': 'Nome',
             'last_name': 'Sobrenome'
         }

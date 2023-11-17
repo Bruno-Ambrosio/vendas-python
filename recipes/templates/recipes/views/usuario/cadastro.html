@@ -1,12 +1,37 @@
-<div>
-    <form action="{% url 'usuario_cadastro' %}" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-
-        <h3>{{ field.label_tag }}</h3>
-        {{ field }}
-
-        {% endfor %}
-        <button>Enviar</button>
-    </form>
+<div style="display: none;">
+  <form action="{% url 'usuario_cadastro' %}" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+      <h3>{{ field.label_tag }}</h3>
+      {{ field }}
+    {% endfor %}
+    <button>Enviar</button>
+  </form>
 </div>
+<html>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de usuario</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/cadastro.css' %}" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="{% url 'usuario_cadastro' %}">
+        {% csrf_token %}
+        <h2>Cadastro</h2>
+        {% for field in form %}
+          <div class="input-field">
+            {{ field }}
+            <label>{{ field.label_tag }}</label>
+          </div>
+        {% endfor %}
+        <button>Entrar</button>
+        <div class="forget">
+          <a href="/login">Já tem conta? Clique aqui</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
