@@ -13,26 +13,17 @@ def home(request):
 def login(request):
     if request.method == 'POST':
         form = LoginForms(request.POST)
-        try:
-            if form.is_valid():
-                usuario = form.cleaned_data['username']
-                senha = form.cleaned_data['password']
-                print(usuario, ' ', senha)
-                user = authenticate(username=usuario, password=senha)
-                print(user)
-                if user is not None:
-                    login_django(request, user)
-                    messages.success(request, 'Logado com sucesso!')
-                    return redirect('/login')
-                else:
-                    messages.warning(request, 'Usuário ou senha inválido(s)!')
-                    return redirect('/login')
+        if form.is_valid():
+            usuario = form.cleaned_data['username']
+            senha = form.cleaned_data['password']
+            user = authenticate(username=usuario, password=senha)
+            if user is not None:
+                login_django(request, user)
+                messages.success(request, 'Logado com sucesso!')
+                return redirect(request.path)
             else:
                 messages.warning(request, 'Usuário ou senha inválido(s)!')
-                return redirect('/login')
-        except:
-            messages.error(request, 'Ocorreu um erro ao processar o login.')
-            return redirect('/login')
+                return redirect(request.path)
     else:
         form = LoginForms()
         return render(
@@ -45,36 +36,30 @@ def login(request):
 def usuario_cadastro(request):
     if request.method == "POST":
         form = UserForms(request.POST)
-        try:
-            if form.is_valid():
-                usuario = form.cleaned_data['username']
-                senha = form.cleaned_data['password']
-                email = form.cleaned_data['email']
-                nome = form.cleaned_data['first_name']
-                sobrenome = form.cleaned_data['last_name']
-                user = User.objects.create_user(username=usuario, password=senha, email=email, first_name=nome, last_name=sobrenome)
-                user.save()
-                return redirect("/")
-        except:
-            pass
-    else:
-        form = UserForms()
-        return render(
-            request, 'recipes/pages/usuario/cadastro.html', context={
-            'name': 'usuario_cadastro',
-            'form': form
-            }
-        )
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect("/")
+    form = UserForms()
+    return render(
+        request, 'recipes/pages/usuario/cadastro.html', context={
+        'name': 'usuario_cadastro',
+        'form': form
+        }
+    )
 
 def cliente_cadastro(request):
     if request.method == "POST":
         form = ClienteForms(request.POST)
-        try:
-            if form.is_valid():
-                form.save()
-                return redirect("/")
-        except:
-            pass
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Cliente cadastrado com sucesso!')
+            return redirect('')
+        else:
+            for field in form.errors.items():
+                messages.warning(request, f'Campo inválido: "{field}"')
+                return redirect(request.path)
     else:
         form = ClienteForms()
         return render(
@@ -87,12 +72,9 @@ def cliente_cadastro(request):
 def fornecedor_cadastro(request):
     if request.method == "POST":
         form = FornecedorForms(request.POST)
-        try:
-            if form.is_valid():
-                form.save()
-                return redirect("/")
-        except:
-            pass
+        if form.is_valid():
+            form.save()
+            return redirect("/")
     else:
         form = FornecedorForms()
         return render(
@@ -105,12 +87,9 @@ def fornecedor_cadastro(request):
 def funcionario_cadastro(request):
     if request.method == "POST":
         form = FuncionarioForms(request.POST)
-        try:
-            if form.is_valid():
-                form.save()
-                return redirect("/")
-        except:
-            pass
+        if form.is_valid():
+            form.save()
+            return redirect("/")
     else:
         form = FuncionarioForms()
         return render(
@@ -122,10 +101,7 @@ def funcionario_cadastro(request):
         
 def cliente_consulta(request):
     if request.method == "GET":
-        try:
-            clientes = Clientes.objetcts.values('cliente_nome', 'cliente_email', 'cliente_contato')
-        except:
-            pass
+        clientes = Clientes.objetcts.values('nome', 'email', 'contato')
         return render(
             request, 'recipes/pages/cliente/consulta.html', context={
                 'name': 'cliente_consulta',
@@ -137,10 +113,7 @@ def cliente_consulta(request):
     
 def funcionario_consulta(request):
     if request.method == "GET":
-        try:
-            funcionarios = Funcionarios.objetcts.values('funcionario_nome', 'funcionario_email', 'funcionario_contato')
-        except:
-            pass
+        funcionarios = Funcionarios.objetcts.values('nome', 'email', 'contato')
         return render(
             request, 'recipes/pages/funcionario/consulta.html', context={
                 'name': 'funcionario_consulta',
@@ -152,10 +125,7 @@ def funcionario_consulta(request):
     
 def fornecedor_consulta(request):
     if request.method == "GET":
-        try:
-            fornecedores = Fornecedores.objetcts.values('fornecedor_nome', 'fornecedor_email', 'fornecedor_contato')
-        except:
-            pass
+        fornecedores = Fornecedores.objetcts.values('nome', 'email', 'contato')
         return render(
             request, 'recipes/pages/fornecedor/consulta.html', context={
                 'name': 'fornecedor_consulta',

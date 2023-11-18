@@ -15,7 +15,22 @@
               {% endfor %}
               <button>Enviar</button>
             </form>
+            {% for mensagem in messages %}
+            <p>{{ mensagem }}</p>
+            {% endfor %}
         </div>
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Erro de validação:</strong>
+            <ul>
+                {% for field, error_list in form.errors.items %}
+                    {% for error in error_list %}
+                        <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     </div>
   </div>
 </div>
