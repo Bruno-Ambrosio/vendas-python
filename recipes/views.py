@@ -55,18 +55,13 @@ def cliente_cadastro(request):
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
             return redirect('')
-        else:
-            for field in form.errors.items():
-                messages.warning(request, f'Campo inválido: "{field}"')
-                return redirect(request.path)
-    else:
-        form = ClienteForms()
-        return render(
-            request, 'recipes/pages/cliente/cadastro.html', context={
-            'name': 'cliente_cadastro',
-            'form': form
-            }
-        )
+    form = ClienteForms()
+    return render(
+        request, 'recipes/pages/cliente/cadastro.html', context={
+        'name': 'cliente_cadastro',
+        'form': form
+        }
+    )
     
 def fornecedor_cadastro(request):
     if request.method == "POST":
@@ -74,14 +69,13 @@ def fornecedor_cadastro(request):
         if form.is_valid():
             form.save()
             return redirect("/")
-    else:
-        form = FornecedorForms()
-        return render(
-            request, 'recipes/pages/fornecedor/cadastro.html', context={
-            'name': 'fornecedor_cadastro',
-            'form': form
-            }
-        )
+    form = FornecedorForms()
+    return render(
+        request, 'recipes/pages/fornecedor/cadastro.html', context={
+        'name': 'fornecedor_cadastro',
+        'form': form
+        }
+    )
 
 def funcionario_cadastro(request):
     if request.method == "POST":
@@ -89,14 +83,13 @@ def funcionario_cadastro(request):
         if form.is_valid():
             form.save()
             return redirect("/")
-    else:
-        form = FuncionarioForms()
-        return render(
-            request, 'recipes/pages/funcionario/cadastro.html', context={
-            'name': 'funcionario_cadastro',
-            'form': form
-            }
-        )
+    form = FuncionarioForms()
+    return render(
+        request, 'recipes/pages/funcionario/cadastro.html', context={
+        'name': 'funcionario_cadastro',
+        'form': form
+        }
+    )
         
 def cliente_consulta(request):
     if request.method == "GET":
@@ -107,8 +100,6 @@ def cliente_consulta(request):
                 'clientes': clientes
             }
         )
-    else:
-        return redirect("/")
     
 def funcionario_consulta(request):
     if request.method == "GET":
@@ -119,8 +110,6 @@ def funcionario_consulta(request):
                 'clientes': funcionarios
             }
         )
-    else:
-        return redirect("/")
     
 def fornecedor_consulta(request):
     if request.method == "GET":
@@ -131,5 +120,3 @@ def fornecedor_consulta(request):
                 'clientes': fornecedores
             }
         )
-    else:
-        return redirect("/")
