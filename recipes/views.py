@@ -24,13 +24,12 @@ def login(request):
             else:
                 messages.warning(request, 'Usuário ou senha inválido(s)!')
                 return redirect(request.path)
-    else:
-        form = LoginForms()
-        return render(
-            request, 'recipes/pages/login.html', context={
-            'name': 'login',
-            'form': form,
-            }
+    form = LoginForms()
+    return render(
+        request, 'recipes/pages/login.html', context={
+        'name': 'login',
+        'form': form,
+        }
     )
 
 def usuario_cadastro(request):
