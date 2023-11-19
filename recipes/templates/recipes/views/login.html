@@ -1,19 +1,4 @@
 
-<div style="display: none;">
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        {% for field in form %}
-
-        <h3>{{ field.label_tag }}</h3>
-        {{ field }}
-        {% endfor %}
-        <button>Enviar</button>
-    </form>
-
-    {% for mensagem in messages %}
-    <h5>{{ mensagem }}</h5>
-    {% endfor %}
-</div>
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html>
@@ -43,3 +28,4 @@
     </div>
   </body>
 </html>
+</div>
