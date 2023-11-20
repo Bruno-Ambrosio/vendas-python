@@ -96,7 +96,7 @@ def funcionario_cadastro(request):
         
 def cliente_consulta(request):
     if request.method == "GET":
-        clientes = Clientes.objetcts.values('nome', 'email', 'contato')
+        clientes = Clientes.objects.all()
         return render(
             request, 'recipes/pages/cliente/consulta.html', context={
                 'name': 'cliente_consulta',
@@ -106,7 +106,7 @@ def cliente_consulta(request):
     
 def funcionario_consulta(request):
     if request.method == "GET":
-        funcionarios = Funcionarios.objetcts.values('nome', 'email', 'contato')
+        funcionarios = Funcionarios.objects.all()
         return render(
             request, 'recipes/pages/funcionario/consulta.html', context={
                 'name': 'funcionario_consulta',
@@ -116,7 +116,7 @@ def funcionario_consulta(request):
     
 def fornecedor_consulta(request):
     if request.method == "GET":
-        fornecedores = Fornecedores.objetcts.values('nome', 'email', 'contato')
+        fornecedores = Fornecedores.objects.all()
         return render(
             request, 'recipes/pages/fornecedor/consulta.html', context={
                 'name': 'fornecedor_consulta',
