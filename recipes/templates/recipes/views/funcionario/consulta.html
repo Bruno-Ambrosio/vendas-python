@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Tabela de funcionarioes</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
+</head>
+<body>
+
+<h1>Lista de Funcionarios</h1>
+
+<table id="grid">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>RG</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Cargo</th> 
+            <th>Nivel de Acesso</th> 
+            <th>Contato</th> 
+            <th>CEP</th> 
+            <th>Endereco</th> 
+            <th>Numero</th> 
+            <th>Complemento</th> 
+            <th>Bairro</th> 
+            <th>Cidade</th> 
+            <th>Estado</th> 
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="grid-body">
+        <!-- Loop para preencher a tabela com os dados -->
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.rg }}</td>
+            <td>{{ funcionario.cpf }}</td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.cargo }}</td>
+            <td>{{ funcionario.nivel_acesso }}</td>
+            <td>{{ funcionario.contato }}</td>
+            <td>{{ funcionario.cep }}</td>
+            <td>{{ funcionario.endereco }}</td>
+            <td>{{ funcionario.numero }}</td>
+            <td>{{ funcionario.complemento }}</td>
+            <td>{{ funcionario.bairro }}</td>
+            <td>{{ funcionario.cidade }}</td>
+            <td>{{ funcionario.estado }}</td>
+            <!-- <td><a href="{% url 'editar_funcionario' funcionario.id %}" class="botao-alterar">Alterar</a></td> -->
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum funcionario encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,21 +1,31 @@
-<div>
-  <div class="container bg-light">
+<!DOCTYPE html>
+<html>
+<head>
+      {% load static %}
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/cadastro.css' %}" />
+</head>
+<body>
+
+<div class="container bg-light">
     <div class="card my-2">
         <div class="card-body">
+            <h1>Cadastro de Clientes</h1>
             <form action="{% url 'cliente_cadastro' %}" method="POST">
-              {% csrf_token %}
-              {% for field in form %}
-
-              <h1>
-                {{ field.label_tag }}
-              </h1>
-                {{ field }}
-            
-
-              {% endfor %}
-              <button>Enviar</button>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label>{{ field.label_tag }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                   <button type="submit" class="botao-enviar">Enviar</button>
+                <button type="reset" class="botao-limpar">Limpar</button>
+                <a href="{% url 'cliente_consulta' %}" class="botao-voltar">Voltar</a>
             </form>
         </div>
     </div>
-  </div>
 </div>
+
+</body>
+</html>

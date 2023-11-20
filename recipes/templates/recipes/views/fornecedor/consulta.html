@@ -2,12 +2,12 @@
 <html>
 <head>
     {% load static %}
-    <title>Tabela de Clientes</title>
+    <title>Tabela de Fornecedores</title>
     <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
 </head>
 <body>
 
-<h1>Tabela de Clientes</h1>
+<h1>Lista de Fornecedores</h1>
 
 <table id="grid">
     <thead>
@@ -15,7 +15,7 @@
             <th>Nome</th>
             <th>Email</th>
             <th>Contato</th>
-            <th>RG</th>
+            <th>CNPJ</th>
             <th>Contato</th> 
             <th>Endereço</th> 
             <th>Bairro</th> 
@@ -27,24 +27,23 @@
     </thead>
     <tbody id="grid-body">
         <!-- Loop para preencher a tabela com os dados -->
-        {% for cliente in clientes %}
+        {% for fornecedor in fornecedors %}
         <tr>
-            <td>{{ cliente.nome }}</td>
-            <td>{{ cliente.email }}</td>
-            <td>{{ cliente.contato }}</td>
-            <td>{{ cliente.rg }}</td>
-            <td>{{ cliente.contato }}</td>
-            <td>{{ cliente.endereco }}</td>
-            <td>{{ cliente.bairro }}</td>
-            <td>{{ cliente.numero }}</td>
-            <td>{{ cliente.cidade }}</td>
-            <td>{{ cliente.cep }}</td>
-            <td>{{ cliente.estado }}</td>
-
+            <td>{{ fornecedor.nome }}</td>
+            <td>{{ fornecedor.email }}</td>
+            <td>{{ fornecedor.contato }}</td>
+            <td>{{ fornecedor.cnpj }}</td>
+            <td>{{ fornecedor.contato }}</td>
+            <td>{{ fornecedor.endereco }}</td>
+            <td>{{ fornecedor.bairro }}</td>
+            <td>{{ fornecedor.numero }}</td>
+            <td>{{ fornecedor.cidade }}</td>
+            <td>{{ fornecedor.cep }}</td>
+            <td>{{ fornecedor.estado }}</td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="3">Nenhum cliente encontrado.</td>
+            <td colspan="3">Nenhum fornecedor encontrado.</td>
         </tr>
         {% endfor %}
     </tbody>

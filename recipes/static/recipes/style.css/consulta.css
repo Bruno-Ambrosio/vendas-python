@@ -1,0 +1,32 @@
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o cabeçalho da tabela */
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Estilo para as células da tabela */
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Estilo para linhas alternadas (opcional) */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para linhas vazias */
+tr.empty-row td {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}

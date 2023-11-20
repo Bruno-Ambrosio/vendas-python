@@ -21,7 +21,7 @@ def login(request):
                 print('aqui')
                 login_django(request, user)
                 messages.success(request, 'Logado com sucesso!')
-                return redirect('/')
+                return redirect('/cliente/cadastro')
             else:
                 messages.warning(request, 'Usuário ou senha inválido(s)!')
                 return redirect(request.path)
