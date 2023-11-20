@@ -16,15 +16,18 @@ def login(request):
         if form.is_valid():
             usuario = form.cleaned_data['username']
             senha = form.cleaned_data['password']
-            user = authenticate(username=usuario, password=senha)
+            user = authenticate(request, username=usuario, password=senha)
             if user is not None:
+                print('aqui')
                 login_django(request, user)
                 messages.success(request, 'Logado com sucesso!')
-                return redirect(request.path)
+                return redirect('/')
             else:
                 messages.warning(request, 'Usuário ou senha inválido(s)!')
                 return redirect(request.path)
-    form = LoginForms()
+    else:
+        form = LoginForms()
+    print(form.errors)
     return render(
         request, 'recipes/pages/login.html', context={
         'name': 'login',

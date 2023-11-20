@@ -6,15 +6,16 @@ from .validators import senha_forte, usuario_em_uso, user_email_em_uso, cliente_
 class UserForms(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'password']
+        fields = ['first_name', 'last_name', 'email', 'username', 'password']
     first_name = forms.CharField(label='Nome', validators=[contem_numero])
     last_name = forms.CharField(label='Sobrenome', validators=[contem_numero])
     email = forms.CharField(label='Email', validators=[user_email_em_uso])
+    username = forms.CharField(label='Usuário')
     password = forms.CharField(label='Senha', widget=forms.PasswordInput, validators=[senha_forte])
 
 class LoginForms(forms.Form):
-    username = forms.CharField(label='Usuário', validators=[usuario_em_uso])
-    password = forms.CharField(label='Senha', widget=forms.PasswordInput, validators=[])
+    username = forms.CharField(label='Usuário')
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput, validators=[senha_forte])
         
 class ClienteForms(forms.ModelForm):
     class Meta:
