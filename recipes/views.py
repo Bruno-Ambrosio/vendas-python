@@ -43,7 +43,8 @@ def usuario_cadastro(request):
             user.set_password(form.cleaned_data['password'])
             user.save()
             return redirect("/")
-    form = UserForms()
+    else:
+        form = UserForms()
     return render(
         request, 'recipes/pages/usuario/cadastro.html', context={
         'name': 'usuario_cadastro',
@@ -57,8 +58,9 @@ def cliente_cadastro(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
-            return redirect('')
-    form = ClienteForms()
+            return redirect('/cliente/consulta')
+    else:
+        form = ClienteForms()
     return render(
         request, 'recipes/pages/cliente/cadastro.html', context={
         'name': 'cliente_cadastro',
@@ -72,7 +74,8 @@ def fornecedor_cadastro(request):
         if form.is_valid():
             form.save()
             return redirect("/")
-    form = FornecedorForms()
+    else:
+        form = FornecedorForms()
     return render(
         request, 'recipes/pages/fornecedor/cadastro.html', context={
         'name': 'fornecedor_cadastro',
@@ -86,7 +89,8 @@ def funcionario_cadastro(request):
         if form.is_valid():
             form.save()
             return redirect("/")
-    form = FuncionarioForms()
+    else:
+        form = FuncionarioForms()
     return render(
         request, 'recipes/pages/funcionario/cadastro.html', context={
         'name': 'funcionario_cadastro',

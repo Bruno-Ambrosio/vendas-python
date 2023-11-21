@@ -22,6 +22,8 @@
                    <button type="submit" class="botao-enviar">Enviar</button>
                 <button type="reset" class="botao-limpar">Limpar</button>
                 <a href="{% url 'cliente_consulta' %}" class="botao-voltar">Voltar</a>
+                {% include 'recipes/partials/messages.html' %}
+                {% include 'recipes/partials/erros.html' %}
             </form>
         </div>
     </div>
