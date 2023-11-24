@@ -13,6 +13,7 @@ class Clientes(models.Model):
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=2)
+    img = models.ImageField(upload_to='')
     
     class Meta:
         db_table = 'tb_clientes'
@@ -29,6 +30,7 @@ class Fornecedores(models.Model):
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=2)
+    img = models.ImageField(upload_to='')
     
     class Meta:
         db_table = 'tb_fornecedores'
@@ -49,6 +51,7 @@ class Funcionarios(models.Model):
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=2)
+    img = models.ImageField(upload_to='')
     
     class Meta:
         db_table = 'tb_funcionarios'
@@ -58,6 +61,7 @@ class Produtos(models.Model):
     descricao = models.CharField(max_length=100, null=False)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     qtd_estoque = models.IntegerField(null=False)
+    img = models.ImageField(upload_to='')
     
     class Meta:
         db_table = 'tb_produtos'
@@ -67,6 +71,7 @@ class Vendas(models.Model):
     data = models.DateTimeField(null=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     observacoes = models.CharField(max_length=255)
+    img = models.ImageField(upload_to='')
     
     class Meta:
         db_table = 'tb_vendas'
