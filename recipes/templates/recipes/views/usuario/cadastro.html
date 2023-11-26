@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <form action="{% url 'usuario_cadastro' %}">
+      <form  action="{% url 'usuario_cadastro' %}" method="POST">
         {% csrf_token %}
         <h2>Cadastro</h2>
         {% for field in form %}

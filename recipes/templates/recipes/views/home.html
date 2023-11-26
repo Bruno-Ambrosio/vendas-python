@@ -1,1 +1,73 @@
-<div>Home</div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static './recipes/style.css/home.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js" integrity="sha512-1SVc8wK7Y/XRAKRKfP09ILQmzJGwqq6m66x6mWa7r36j+/fa+3kz46s8kvELsGc52yo1as48nneFic7BZKMu8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" integrity="sha512-l1vPIxNzx1pUOKdZEe4kEnWCBzFVVYX5QziGS7zRZE4Gi5ykXrfvUgnSBttDbs0kXe2L06m9+51eadS+Bg6a+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    
+    <div class="Ever">
+        <div class="divBody">
+            <div class="vendas">
+                <a href="" class="desc">Vendas</a>
+            </div>
+            <div class="divButtonsHead">
+                <div class="buttonPerfil">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconPerfil.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <a href="">Clientes</a>
+                    </button>
+                </div>
+                <div class="buttonFuncionarios">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconFuncionario.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <a href="">Funcionários</a>
+                    </button>
+                </div>
+                <div class="fornecedores">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconFornecedores.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <a href="">Fornecedores</a>
+                    </button>
+                </div>
+                <div class="produtos">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconProdutos.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <a href="">Produtos</a>
+                    </button>
+                </div>
+                <div class="vendasButton">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconVendas.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <a href="">Vendas</a>
+                    </button>
+                </div>
+
+            </div>
+            <div class="exit">
+                <div class="exitButton">
+                    <button class="btn btn-outline">
+                        <img class="iconSair" src="{% static '/images/IconSair.png' %}" alt="" >
+                        <a href="">Sair</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="text">
+            <a href="" class="textTitle">Sistema de Vendas</a>
+            <a href="" class="TextDesc">Seja Bem-Vindo!!</a>
+        </div>
+    </div>
+</body>
+
+</html>

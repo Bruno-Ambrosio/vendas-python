@@ -1,0 +1,66 @@
+.divBody{
+    width: 15%;
+}
+body{
+    background-color: #0000
+}
+.Ever{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    padding: 10px 10px;
+}
+.divButtonsHead{
+    flex-direction: column;
+    display: flex;
+    gap: 8px;
+}
+.iconSair{
+    width: 30px;
+    height: 30px;
+}
+
+.btn{
+    width: 100%!important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.vendas{
+    justify-content: center;
+    display: flex;
+    margin-bottom: 80px;
+    cursor: default;
+}
+.desc{
+    font-size: 40px;
+    cursor: default;
+    color: #b0b0b0;
+}
+.exit{
+    margin-top: 225px;
+}
+.exitButton{
+    width: 55%;
+}
+.buttonPerfil{
+    width: 100%;
+    align-items: baseline;
+}
+.text{
+    width:-webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    background-color: #1f2933;
+    border-radius: 15px;
+    padding: 5px 40px;
+}
+.textTitle{
+    font-size: 35px;
+    color: #b0b0b0;
+    cursor: default;
+}
+.TextDesc{
+    cursor: default;
+    color: #b0b0b0;
+}

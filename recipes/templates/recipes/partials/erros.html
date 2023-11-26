@@ -1,10 +1,14 @@
 {% if form.errors %}
-    <div class="errors">
-        <p>Corrija os seguintes erros:</p>
-        <ul>
-            {% for field, errors in form.errors.items %}
-                <li>{{ field }}: {{ errors }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% for field, error in form.errors.items %}
+        <script type="text/javascript">
+            function exibirMensagem(){
+                Swal.fire({
+                    title: "Aconteceu algum erro",
+                    text: "{{ error }}",
+                    icon: "error"
+                });
+            }
+            exibirMensagem();
+        </script>
+    {% endfor %}
 {% endif %}

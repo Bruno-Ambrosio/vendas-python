@@ -1,7 +1,15 @@
 <div>
+
     {% for mensagem in messages %}
-        <p>
-            {{ mensagem }}
-        </p>
+        <script type="text/javascript">
+            function exibirMensagem(){
+                Swal.fire({
+                    title: "Sucesso",
+                    text: "{{ mensagem }}",
+                    icon: "success"
+                });
+            }
+            exibirMensagem();
+        </script>
     {% endfor %}
 </div>
