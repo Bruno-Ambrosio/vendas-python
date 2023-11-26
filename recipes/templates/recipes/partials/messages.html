@@ -1,9 +1,14 @@
 <div>
-    {% if messages %}
-    <div class="messages" style="color:white">
-        {% for message in messages %}
-        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %}
+    {% for mensagem in messages %}
+        <script type="text/javascript">
+            function exibirMensagem(){
+                Swal.fire({
+                    title: "Sucesso",
+                    text: "{{ mensagem }}",
+                    icon: "success"
+                });
+            }
+            exibirMensagem();
+        </script>
+    {% endfor %}
 </div>
