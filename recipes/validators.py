@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Clientes, Fornecedores, Funcionarios
-from validate_docbr import CPF, CNPJ
 import re
 
 def senha_forte(value):
@@ -13,30 +12,20 @@ def usuario_em_uso(value):
         raise forms.ValidationError('Usuário já está sendo usado.')
 
 def user_email_em_uso(value):
-    if User.objects.filter(username=value).exists():
+    if User.objects.filter(email=value).exists():
         raise forms.ValidationError('Usuário já está sendo usado.')
     
 def cliente_email_em_uso(value):
-    if Clientes.objects.filter(username=value).exists():
+    if Clientes.objects.filter(email=value).exists():
         raise forms.ValidationError('Usuário já está sendo usado.')
     
 def fornecedor_email_em_uso(value):
-    if Fornecedores.objects.filter(username=value).exists():
+    if Fornecedores.objects.filter(email=value).exists():
         raise forms.ValidationError('Usuário já está sendo usado.')
     
 def funcionario_email_em_uso(value):
-    if Funcionarios.objects.filter(username=value).exists():
+    if Funcionarios.objects.filter(email=value).exists():
         raise forms.ValidationError('Usuário já está sendo usado.')
-    
-def cpf_invalido(value):
-    valida_cpf = CPF()
-    if not valida_cpf.validate(value):
-        raise forms.ValidationError('CPF inválido')
-
-def cnpj_invalido(value):
-    valida_cnpj = CNPJ()
-    if not valida_cnpj.validate(value):
-        raise forms.ValidationError('CNPJ inválido')
 
 def contem_numero(value):
     if re.search(r'\d', value):

@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <form  action="{% url 'usuario_cadastro' %}" method="POST">
+      <form action="{% url 'usuario_cadastro' %}" method="POST">
         {% csrf_token %}
         <h2>Cadastro</h2>
         {% for field in form %}
@@ -31,6 +31,7 @@
         <div class="forget">
           <a href="/login">Já tem conta? Clique aqui</a>
         </div>
+        {% include 'recipes/partials/messages.html' %}
       </form>
     </div>
   </body>

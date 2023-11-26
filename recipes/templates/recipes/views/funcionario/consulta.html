@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Tabela de funcionarioes</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
+</head>
+<body>
+
+<h1>Lista de Funcionarios</h1>
+
+<table id="grid">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>RG</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Cargo</th> 
+            <th>Nivel de Acesso</th> 
+            <th>Contato</th> 
+            <th>CEP</th> 
+            <th>Endereco</th> 
+            <th>Numero</th> 
+            <th>Complemento</th> 
+            <th>Bairro</th> 
+            <th>Cidade</th> 
+            <th>Estado</th> 
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="grid-body">
+        <!-- Loop para preencher a tabela com os dados -->
+        {% for funcionario in funcionarios %}
+        <tr>
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.rg }}</td>
+            <td>{{ funcionario.cpf }}</td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.cargo }}</td>
+            <td>{{ funcionario.nivel_acesso }}</td>
+            <td>{{ funcionario.contato }}</td>
+            <td>{{ funcionario.cep }}</td>
+            <td>{{ funcionario.endereco }}</td>
+            <td>{{ funcionario.numero }}</td>
+            <td>{{ funcionario.complemento }}</td>
+            <td>{{ funcionario.bairro }}</td>
+            <td>{{ funcionario.cidade }}</td>
+            <td>{{ funcionario.estado }}</td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEditar{{ funcionario.id }}">
+                    Alterar
+                </button>
+            </td>       
+        </tr>
+        <div class="modal" id="modalEditar{{ funcionario.id }}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Cabeçalho do modal -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar funcionario</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Conteúdo do modal com o formulário de edição -->
+                    <div class="modal-body">
+                        <!-- Seu formulário de edição -->
+                        <form action="{% url 'funcionario_cadastro' funcionario.id %}" method="POST">
+                            {% csrf_token %}
+                          <div class="form-group">
+                            <label for="nome">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.nome }}">
+                        </div>
+                            <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Contato:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.contato }}">
+                        </div>
+                            <div class="form-group">
+                            <label for="email">Endereco:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.endereco }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Bairro:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.bairro }}">
+                        </div>
+                            <div class="form-group">
+                            <label for="email">Numero:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.numero }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Cidade:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.cidade }}">
+                        </div>
+                            <div class="form-group">
+                            <label for="email">CEP:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ funcionario.cep }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Estado:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" value="{{ funcionario.estado }}">
+                        </div>
+                            
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum funcionario encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
