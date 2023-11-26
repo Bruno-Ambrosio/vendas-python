@@ -65,7 +65,7 @@
                     <!-- Conteúdo do modal com o formulário de edição -->
                     <div class="modal-body">
                         <!-- Seu formulário de edição -->
-                        <form action="{% url 'cliente_cadastro' cliente.id %}" method="POST">
+                        <form action="{% url 'cliente_editar' cliente.id %}" method="POST">
                             {% csrf_token %}
                           <div class="form-group">
                             <label for="nome">Nome:</label>

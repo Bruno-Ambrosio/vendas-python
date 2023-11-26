@@ -1,1 +1,5 @@
 <div>Home</div>
+<form action="{% url 'sair' %}" method="post">
+    {% csrf_token %}
+    <button>Logout</button>
+</form>
