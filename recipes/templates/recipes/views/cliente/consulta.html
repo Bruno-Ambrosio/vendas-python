@@ -4,11 +4,7 @@
     {% load static %}
     <title>Tabela de Clientes</title>
     <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
-    <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
-    <!-- Adicione o Bootstrap (CSS e JS) -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'recipes/scripts/confirma_excluir.js' %}"></script>
 </head>
 </head>
 <body>
@@ -49,7 +45,23 @@
             <td>{{ cliente.cep }}</td>
             <td>{{ cliente.estado }}</td>
             <td>
-                    <a href="/cliente/editar/{{cliente.id}}" class="btn btn-primary">Editar</a>
+
+                <div class="d-flex gap-2">
+                    <div>
+                        <a href="/cliente/editar/{{cliente.id}}" class="btn btn-primary">Editar</a>
+                    </div>
+                    
+                    <div>
+                        {% block content %}
+                        <form id="delete-form" action="{% url 'cliente_excluir' cliente.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="button" onclick="showConfirmationDialog()">Excluir</button>
+                        </form>
+                        {% endblock %}
+
+                    </div>
+                </div>
+                    
             </td>
         </tr>
         {% empty %}

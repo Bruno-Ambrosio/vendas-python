@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+      {% load static %}
+    <title>Edição de Fornecedor</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/cadastro.css' %}" />
+</head>
+<body>
+
+<div class="container bg-light">
+    <div class="card my-2">
+        <div class="card-body">
+            <h1>Edição de Fornecedores</h1>
+            <form action="{% url 'fornecedor_editar' fornecedor.id %}" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label>{{ field.label_tag }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                   <button type="submit" class="botao-enviar">Enviar</button>
+                <button type="reset" class="botao-limpar">Limpar</button>
+                <a href="{% url 'fornecedor_consulta' %}" class="botao-voltar">Voltar</a>
+                {% include 'recipes/partials/messages.html' %}
+                {% include 'recipes/partials/erros.html' %}
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

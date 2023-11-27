@@ -89,7 +89,7 @@ def fornecedor_cadastro(request):
         form = FornecedorForms(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/")
+            return redirect("/fornecedor/consulta")
     else:
         form = FornecedorForms()
     return render(
@@ -133,7 +133,7 @@ def funcionario_consulta(request):
         return render(
             request, 'recipes/pages/funcionario/consulta.html', context={
                 'name': 'funcionario_consulta',
-                'clientes': funcionarios
+                'funcionarios': funcionarios
             }
         )
 
@@ -144,11 +144,11 @@ def fornecedor_consulta(request):
         return render(
             request, 'recipes/pages/fornecedor/consulta.html', context={
                 'name': 'fornecedor_consulta',
-                'clientes': fornecedores
+                'fornecedores': fornecedores
             }
         )
 
-@login_required()
+@login_required() 
 def funcionario_editar(request, id):
     funcionario = get_object_or_404(Funcionarios, pk=id)
     if request.method == 'POST':
@@ -157,15 +157,16 @@ def funcionario_editar(request, id):
             form.save()
             return redirect('/funcionario/consulta')
     else:
-        form = FuncionarioForms()
+        form = FuncionarioForms(instance=funcionario)
     return render(
-        request, 'recipes/pages/funcionario/consulta.html', context={
+        request, 'recipes/pages/funcionario/editar.html', context={
             'name': 'editar_funcionario',
-            'form': form
+            'form': form,
+            'funcionario': funcionario
         }
     )
-
-@login_required()   
+ 
+@login_required()    
 def cliente_editar(request, id):
     cliente = get_object_or_404(Clientes, pk=id)
     if request.method == 'POST':
@@ -179,13 +180,13 @@ def cliente_editar(request, id):
         form = ClienteForms(instance=cliente)
     return render(
         request, 'recipes/pages/cliente/editar.html', context={
-            'name': 'editar_funcionario',
+            'name': 'editar_cliente',
             'form': form,
             'cliente': cliente
         }
     )
-
-@login_required()   
+    
+@login_required()    
 def fornecedor_editar(request, id):
     fornecedor = get_object_or_404(Fornecedores, pk=id)
     if request.method == 'POST':
@@ -194,10 +195,32 @@ def fornecedor_editar(request, id):
             form.save()
             return redirect('/fornecedor/consulta')
     else:
-        form = FornecedorForms()
+        form = FornecedorForms(instance=fornecedor)
     return render(
-        request, 'recipes/pages/fornecedor/consulta.html', context={
-            'name': 'editar_funcionario',
-            'form': form
+        request, 'recipes/pages/fornecedor/editar.html', context={
+            'name': 'editar_fornecedor',
+            'form': form,
+            'fornecedor': fornecedor
         }
     )
+
+@login_required() 
+def cliente_excluir(request, id):
+    cliente = get_object_or_404(Clientes, pk=id)
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('/cliente/consulta')
+
+@login_required() 
+def funcionario_excluir(request, id):
+    funcionario = get_object_or_404(Funcionarios, pk=id)
+    if request.method == 'POST':
+        funcionario.delete()
+        return redirect('/funcionario/consulta')
+
+@login_required()   
+def fornecedor_excluir(request, id):
+    fornecedor = get_object_or_404(Fornecedores, pk=id)
+    if request.method == 'POST':
+        fornecedor.delete()
+        return redirect('/fornecedor/consulta')
