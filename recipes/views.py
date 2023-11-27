@@ -50,7 +50,7 @@ def usuario_cadastro(request):
     else:
         form = UserForms()
     
-    if request.user.is_authenticated:
+    if not request.user.is_authenticated:
         return render(
             request, 'recipes/pages/usuario/cadastro.html', context={
             'name': 'usuario_cadastro',
