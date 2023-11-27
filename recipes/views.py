@@ -148,6 +148,7 @@ def fornecedor_consulta(request):
             }
         )
 
+@login_required()
 def funcionario_editar(request, id):
     funcionario = get_object_or_404(Funcionarios, pk=id)
     if request.method == 'POST':
@@ -163,7 +164,8 @@ def funcionario_editar(request, id):
             'form': form
         }
     )
-    
+
+@login_required()   
 def cliente_editar(request, id):
     cliente = get_object_or_404(Clientes, pk=id)
     if request.method == 'POST':
@@ -182,7 +184,8 @@ def cliente_editar(request, id):
             'cliente': cliente
         }
     )
-    
+
+@login_required()   
 def fornecedor_editar(request, id):
     fornecedor = get_object_or_404(Fornecedores, pk=id)
     if request.method == 'POST':
