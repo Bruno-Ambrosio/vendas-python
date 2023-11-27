@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
+from django.http import JsonResponse
 from .forms import ClienteForms, FornecedorForms, FuncionarioForms, UserForms, LoginForms
 from .models import Clientes, Fornecedores, Funcionarios
 from django.contrib.auth import authenticate, login as login_django, logout
@@ -48,7 +50,7 @@ def usuario_cadastro(request):
     else:
         form = UserForms()
     
-    if not request.user.is_authenticated:
+    if request.user.is_authenticated:
         return render(
             request, 'recipes/pages/usuario/cadastro.html', context={
             'name': 'usuario_cadastro',
@@ -166,15 +168,18 @@ def cliente_editar(request, id):
     cliente = get_object_or_404(Clientes, pk=id)
     if request.method == 'POST':
         form = ClienteForms(request.POST, instance=cliente)
+        print(form)
         if form.is_valid():
+            print('aqui')
             form.save()
             return redirect('/cliente/consulta')
     else:
-        form = ClienteForms()
+        form = ClienteForms(instance=cliente)
     return render(
-        request, 'recipes/pages/cliente/consulta.html', context={
+        request, 'recipes/pages/cliente/editar.html', context={
             'name': 'editar_funcionario',
-            'form': form
+            'form': form,
+            'cliente': cliente
         }
     )
     

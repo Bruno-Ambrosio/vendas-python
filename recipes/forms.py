@@ -24,7 +24,7 @@ class ClienteForms(forms.ModelForm):
     nome = forms.CharField(label='Nome', validators=[contem_numero])
     rg = forms.CharField(label='RG')
     cpf = forms.CharField(label='CPF', validators=[])
-    email = forms.CharField(label='Email', validators=[cliente_email_em_uso])
+    email = forms.CharField(label='Email', validators=[])
         
 class FornecedorForms(forms.ModelForm):
     class Meta:

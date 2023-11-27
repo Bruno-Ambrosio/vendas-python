@@ -1,20 +1,12 @@
-<div style="display: none;">
-  <form action="{% url 'usuario_cadastro' %}" method="POST">
-    {% csrf_token %}
-    {% for field in form %}
-      <h3>{{ field.label_tag }}</h3>
-      {{ field }}
-    {% endfor %}
-    <button>Enviar</button>
-  </form>
-</div>
 <html>
   <head>
     {% load static %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de usuario</title>
-    <link rel="stylesheet" href="{% static './recipes/style.css/cadastro.css' %}" />
+    <link rel="stylesheet" href="{% static 'recipes/style.css/cadastro_usuario.css' %}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js" integrity="sha512-1SVc8wK7Y/XRAKRKfP09ILQmzJGwqq6m66x6mWa7r36j+/fa+3kz46s8kvELsGc52yo1as48nneFic7BZKMu8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" integrity="sha512-l1vPIxNzx1pUOKdZEe4kEnWCBzFVVYX5QziGS7zRZE4Gi5ykXrfvUgnSBttDbs0kXe2L06m9+51eadS+Bg6a+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <div class="wrapper">
@@ -32,6 +24,7 @@
           <a href="/login">Já tem conta? Clique aqui</a>
         </div>
         {% include 'recipes/partials/messages.html' %}
+        {% include 'recipes/partials/erros.html' %}
       </form>
     </div>
   </body>

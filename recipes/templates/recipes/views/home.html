@@ -56,10 +56,13 @@
             </div>
             <div class="exit">
                 <div class="exitButton">
+                    <form action="{% url 'sair' %}" method="POST">
+                        {% csrf_token %}
                     <button class="btn btn-outline">
                         <img class="iconSair" src="{% static '/images/IconSair.png' %}" alt="" >
-                        <a href="">Sair</a>
+                        <p>Sair</p>
                     </button>
+                </form>
                 </div>
             </div>
         </div>
