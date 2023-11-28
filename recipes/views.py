@@ -20,7 +20,7 @@ def login(request):
                 messages.success(request, 'Logado com sucesso!')
                 return redirect('/home')
             else:
-                messages.warning(request, 'Usuário ou senha inválido(s)!')
+                messages.error(request, 'Usuário ou senha inválido(s)!')
                 return redirect(request.path)
     else:
         form = LoginForms()
@@ -36,6 +36,7 @@ def login(request):
 
 def sair(request):
     if request.method == 'POST':
+        messages.success(request, 'Deslogado')
         logout(request)
         return redirect('/')
 

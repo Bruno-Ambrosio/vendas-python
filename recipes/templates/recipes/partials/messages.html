@@ -3,10 +3,10 @@
         <script type="text/javascript">
             function exibirMensagem(){
                 Swal.fire({
-                    title: "Sucesso",
-                    text: "{{ mensagem }}",
-                    icon: "success"
-                });
+                    icon: "{% if message.level != DEFAULT_MESSAGE_LEVELS.ERROR %}success{% else %}error{% endif %}",
+                    title: "{% if message.level != DEFAULT_MESSAGE_LEVELS.ERROR %}Tudo certo{% else %}Algo deu errado{% endif %}",
+                    text: "{{mensagem}}",
+                  });
             }
             exibirMensagem();
         </script>

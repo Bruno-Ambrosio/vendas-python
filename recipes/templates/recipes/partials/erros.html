@@ -1,4 +1,4 @@
-{% if form.errors %}
+{% comment %} {% if form.errors %}
     {% for field, error in form.errors.items %}
         <script type="text/javascript">
             function exibirMensagem(){
@@ -11,4 +11,4 @@
             exibirMensagem();
         </script>
     {% endfor %}
-{% endif %}
+{% endif %} {% endcomment %}
