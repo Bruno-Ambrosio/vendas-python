@@ -4,6 +4,7 @@
       {% load static %}
     <title>Cadastro de Forncededores</title>
     <link rel="stylesheet" href="{% static './recipes/style.css/cadastro.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -22,6 +23,8 @@
                 <button type="submit" class="botao-enviar">Enviar</button>
                 <button type="reset" class="botao-limpar">Limpar</button>
                 <a href="{% url 'fornecedor_consulta' %}" class="botao-voltar">Voltar</a>
+                {% include 'recipes/partials/messages.html' %}
+                {% include 'recipes/partials/erros.html' %}
             </form>
         </div>
     </div>

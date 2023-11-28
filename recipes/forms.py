@@ -32,13 +32,14 @@ class ClienteForms(forms.ModelForm):
     nome = forms.CharField(label='Nome', validators=[contem_numero])
     rg = forms.CharField(label='RG', validators=[rg_valido])
     cpf = forms.CharField(label='CPF', validators=[cpf_valido])
-    email = forms.CharField(label='Email', validators=[cliente_email_em_uso])
+    email = forms.EmailField(label='Email', validators=[cliente_email_em_uso])
     
 class FornecedorEdtForms(forms.ModelForm):
     class Meta:
         model = Fornecedores
         exclude = ['cnpj']
     nome = forms.CharField(label='Nome', validators=[contem_numero])
+    email = forms.EmailField(label='Email')
         
 class FornecedorForms(forms.ModelForm):
     class Meta:
@@ -46,13 +47,14 @@ class FornecedorForms(forms.ModelForm):
         fields = "__all__"
     nome = forms.CharField(label='Nome', validators=[contem_numero])
     cnpj = forms.CharField(label='CNPJ', validators=[cnpj_valido])
-    email = forms.CharField(label='Email', validators=[fornecedor_email_em_uso])
+    email = forms.EmailField(label='Email', validators=[fornecedor_email_em_uso])
 
 class FuncionarioEdtForms(forms.ModelForm):
     class Meta:
         model = Funcionarios
         exclude = ['cpf', 'rg']
     nome = forms.CharField(label='Nome', validators=[contem_numero])
+    email = forms.EmailField(label='Email')
     
 class FuncionarioForms(forms.ModelForm):
     class Meta:
@@ -60,5 +62,5 @@ class FuncionarioForms(forms.ModelForm):
         fields = "__all__"
     nome = forms.CharField(label='Nome', validators=[contem_numero])
     rg = forms.CharField(label='RG', validators=[rg_valido])
-    cpf = forms.CharField(label='CPF', validators=[cnpj_valido])
-    email = forms.CharField(label='Email', validators=[funcionario_email_em_uso])
+    cpf = forms.CharField(label='CPF', validators=[cpf_valido])
+    email = forms.EmailField(label='Email', validators=[funcionario_email_em_uso])
