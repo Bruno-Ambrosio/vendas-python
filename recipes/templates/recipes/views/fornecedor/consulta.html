@@ -54,6 +54,8 @@
                         <form id="delete-form" action="{% url 'fornecedor_excluir' fornecedor.id %}" method="post">
                             {% csrf_token %}
                             <button class="btn btn-danger" type="button" onclick="showConfirmationDialogWithSweetAlert()">Excluir</button>
+                            {% include 'recipes/partials/messages.html' %}
+                            {% include 'recipes/partials/erros.html' %}
                         </form>
                         {% endblock %}
 
