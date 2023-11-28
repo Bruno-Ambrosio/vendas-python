@@ -29,19 +29,19 @@ def usuario_em_uso(value):
 
 def user_email_em_uso(value):
     if User.objects.filter(email=value).exists():
-        raise forms.ValidationError('Usuário já está sendo usado.')
+        raise forms.ValidationError('Email já está sendo usado.')
     
 def cliente_email_em_uso(value):
     if Clientes.objects.filter(email=value).exists():
-        raise forms.ValidationError('Usuário já está sendo usado.')
+        raise forms.ValidationError('Email já está sendo usado.')
     
 def fornecedor_email_em_uso(value):
     if Fornecedores.objects.filter(email=value).exists():
-        raise forms.ValidationError('Usuário já está sendo usado.')
+        raise forms.ValidationError('Email já está sendo usado.')
     
 def funcionario_email_em_uso(value):
     if Funcionarios.objects.filter(email=value).exists():
-        raise forms.ValidationError('Usuário já está sendo usado.')
+        raise forms.ValidationError('Email já está sendo usado.')
 
 def contem_numero(value):
     if re.search(r'\d', value):

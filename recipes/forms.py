@@ -9,7 +9,7 @@ class UserForms(forms.ModelForm):
         fields = ['first_name', 'last_name', 'email', 'username', 'password']
     first_name = forms.CharField(label='Nome', validators=[contem_numero])
     last_name = forms.CharField(label='Sobrenome', validators=[contem_numero])
-    email = forms.CharField(label='Email', validators=[user_email_em_uso])
+    email = forms.EmailField(label='Email', validators=[user_email_em_uso])
     username = forms.CharField(label='Usuário', validators=[usuario_em_uso])
     password = forms.CharField(label='Senha', widget=forms.PasswordInput, validators=[senha_forte])
 
@@ -22,6 +22,7 @@ class ClienteEdtForms(forms.ModelForm):
         model = Clientes
         exclude = ['cpf', 'rg']
     nome = forms.CharField(label='Nome', validators=[contem_numero])
+    email = forms.EmailField(label='Email')
     
         
 class ClienteForms(forms.ModelForm):

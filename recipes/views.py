@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
-from django.http import JsonResponse
+from django import forms
 from .forms import ClienteForms, FornecedorForms, FuncionarioForms, UserForms, LoginForms, ClienteEdtForms, FuncionarioEdtForms, FornecedorEdtForms
 from .models import Clientes, Fornecedores, Funcionarios
 from django.contrib.auth import authenticate, login as login_django, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib import messages
 
 def login(request):
@@ -20,8 +18,7 @@ def login(request):
                 messages.success(request, 'Logado com sucesso!')
                 return redirect('/home')
             else:
-                messages.error(request, 'Usuário ou senha inválido(s)!')
-                return redirect(request.path)
+                form.add_error(None, 'Usuário ou senha inválido(s)')
     else:
         form = LoginForms()
     if not request.user.is_authenticated:
@@ -36,7 +33,7 @@ def login(request):
 
 def sair(request):
     if request.method == 'POST':
-        messages.success(request, 'Deslogado')
+        messages.success(request, 'Sessão encerrada.')
         logout(request)
         return redirect('/')
 
@@ -47,6 +44,7 @@ def usuario_cadastro(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
+            messages.success(request, 'Usuário cadastrado com sucesso!')
             return redirect('/')
     else:
         form = UserForms()
@@ -71,7 +69,7 @@ def home(request):
 def cliente_cadastro(request):
     if request.method == "POST":
         form = ClienteForms(request.POST)
-        print(form)
+        print(form.errors)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
@@ -91,6 +89,7 @@ def fornecedor_cadastro(request):
         form = FornecedorForms(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Fornecedor cadastrado com sucesso!')
             return redirect("/fornecedor/consulta")
     else:
         form = FornecedorForms()
@@ -107,6 +106,7 @@ def funcionario_cadastro(request):
         form = FuncionarioForms(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Funcionário cadastrado com sucesso!')
             return redirect("/funcionario/consulta")
     else:
         form = FuncionarioForms()
@@ -157,6 +157,7 @@ def funcionario_editar(request, id):
         form = FuncionarioEdtForms(request.POST, instance=funcionario)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Funcionário editado com sucesso!')
             return redirect('/funcionario/consulta')
     else:
         form = FuncionarioEdtForms(instance=funcionario)
@@ -175,6 +176,7 @@ def cliente_editar(request, id):
         form = ClienteEdtForms(request.POST, instance=cliente)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Cliente editado com sucesso!')
             return redirect('/cliente/consulta')
     else:
         form = ClienteEdtForms(instance=cliente)
@@ -193,6 +195,7 @@ def fornecedor_editar(request, id):
         form = FornecedorEdtForms(request.POST, instance=fornecedor)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Fornecedor editado com sucesso!')
             return redirect('/fornecedor/consulta')
     else:
         form = FornecedorEdtForms(instance=fornecedor)
@@ -209,6 +212,7 @@ def cliente_excluir(request, id):
     cliente = get_object_or_404(Clientes, pk=id)
     if request.method == 'POST':
         cliente.delete()
+        messages.success(request, 'Cliente excluído com sucesso!')
         return redirect('/cliente/consulta')
 
 @login_required() 
@@ -216,6 +220,7 @@ def funcionario_excluir(request, id):
     funcionario = get_object_or_404(Funcionarios, pk=id)
     if request.method == 'POST':
         funcionario.delete()
+        messages.success(request, 'Funcionário excluído com sucesso!')
         return redirect('/funcionario/consulta')
 
 @login_required()   
@@ -223,4 +228,5 @@ def fornecedor_excluir(request, id):
     fornecedor = get_object_or_404(Fornecedores, pk=id)
     if request.method == 'POST':
         fornecedor.delete()
+        messages.success(request, 'Fornecedor excluído com sucesso!')
         return redirect('/fornecedor/consulta')

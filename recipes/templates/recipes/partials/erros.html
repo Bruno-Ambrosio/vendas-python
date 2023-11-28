@@ -1,14 +1,19 @@
-{% comment %} {% if form.errors %}
-    {% for field, error in form.errors.items %}
+<div>
+    {% if form.errors %}
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
         <script type="text/javascript">
             function exibirMensagem(){
                 Swal.fire({
-                    title: "Aconteceu algum erro",
-                    text: "{{ error }}",
-                    icon: "error"
-                });
+                    icon: "error",
+                    title: "Algo deu errado.",
+                    html: "{{error}}",
+                    timer: 1500
+                  });
             }
             exibirMensagem();
         </script>
+        {% endfor %}
     {% endfor %}
-{% endif %} {% endcomment %}
+    {% endif %}
+</div>

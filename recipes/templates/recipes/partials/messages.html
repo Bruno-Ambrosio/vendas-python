@@ -3,9 +3,10 @@
         <script type="text/javascript">
             function exibirMensagem(){
                 Swal.fire({
-                    icon: "{% if message.level != DEFAULT_MESSAGE_LEVELS.ERROR %}success{% else %}error{% endif %}",
-                    title: "{% if message.level != DEFAULT_MESSAGE_LEVELS.ERROR %}Tudo certo{% else %}Algo deu errado{% endif %}",
+                    icon: "success",
+                    title: "Tudo certo",
                     text: "{{mensagem}}",
+                    timer: 1500
                   });
             }
             exibirMensagem();
