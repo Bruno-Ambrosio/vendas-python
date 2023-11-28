@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import JsonResponse
-from .forms import ClienteForms, FornecedorForms, FuncionarioForms, UserForms, LoginForms
+from .forms import ClienteForms, FornecedorForms, FuncionarioForms, UserForms, LoginForms, ClienteEdtForms, FuncionarioEdtForms, FornecedorEdtForms
 from .models import Clientes, Fornecedores, Funcionarios
 from django.contrib.auth import authenticate, login as login_django, logout
 from django.contrib.auth.decorators import login_required
@@ -71,6 +71,7 @@ def home(request):
 def cliente_cadastro(request):
     if request.method == "POST":
         form = ClienteForms(request.POST)
+        print(form)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
@@ -153,12 +154,12 @@ def fornecedor_consulta(request):
 def funcionario_editar(request, id):
     funcionario = get_object_or_404(Funcionarios, pk=id)
     if request.method == 'POST':
-        form = FuncionarioForms(request.POST, instance=funcionario)
+        form = FuncionarioEdtForms(request.POST, instance=funcionario)
         if form.is_valid():
             form.save()
             return redirect('/funcionario/consulta')
     else:
-        form = FuncionarioForms(instance=funcionario)
+        form = FuncionarioEdtForms(instance=funcionario)
     return render(
         request, 'recipes/pages/funcionario/editar.html', context={
             'name': 'editar_funcionario',
@@ -171,14 +172,12 @@ def funcionario_editar(request, id):
 def cliente_editar(request, id):
     cliente = get_object_or_404(Clientes, pk=id)
     if request.method == 'POST':
-        form = ClienteForms(request.POST, instance=cliente)
-        print(form)
+        form = ClienteEdtForms(request.POST, instance=cliente)
         if form.is_valid():
-            print('aqui')
             form.save()
             return redirect('/cliente/consulta')
     else:
-        form = ClienteForms(instance=cliente)
+        form = ClienteEdtForms(instance=cliente)
     return render(
         request, 'recipes/pages/cliente/editar.html', context={
             'name': 'editar_cliente',
@@ -191,12 +190,12 @@ def cliente_editar(request, id):
 def fornecedor_editar(request, id):
     fornecedor = get_object_or_404(Fornecedores, pk=id)
     if request.method == 'POST':
-        form = FornecedorForms(request.POST, instance=fornecedor)
+        form = FornecedorEdtForms(request.POST, instance=fornecedor)
         if form.is_valid():
             form.save()
             return redirect('/fornecedor/consulta')
     else:
-        form = FornecedorForms(instance=fornecedor)
+        form = FornecedorEdtForms(instance=fornecedor)
     return render(
         request, 'recipes/pages/fornecedor/editar.html', context={
             'name': 'editar_fornecedor',

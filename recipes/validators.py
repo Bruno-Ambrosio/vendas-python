@@ -1,7 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Clientes, Fornecedores, Funcionarios
+from validate_docbr import CPF, CNPJ
 import re
+
+cpf = CPF()
+cnpj = CNPJ()
+
+def rg_valido(value):
+    if len(value) != 10:
+        raise forms.ValidationError('RG informado é inválido!')
+
+def cpf_valido(value):
+    if not cpf.validate(value):
+        raise forms.ValidationError('CPF informado é inválido!')
+    
+def cnpj_valido(value):
+    if not cnpj.validate(value):
+        raise forms.ValidationError('CNPJ informado é inválido!')
 
 def senha_forte(value):
     if len(value) < 8:
