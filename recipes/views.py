@@ -69,7 +69,6 @@ def home(request):
 def cliente_cadastro(request):
     if request.method == "POST":
         form = ClienteForms(request.POST)
-        print(form.errors)
         if form.is_valid():
             form.save()
             messages.success(request, 'Cliente cadastrado com sucesso!')
