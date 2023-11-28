@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Tabela de Clientes</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
+    <script src="{% static 'recipes/scripts/confirma_excluir.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+</head>
+<body>
+
+<h1>Tabela de Clientes</h1>
+
+<table id="grid">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Contato</th>
+            <th>RG</th>
+            <th>Contato</th> 
+            <th>Endereço</th> 
+            <th>Bairro</th> 
+            <th>Numero</th> 
+            <th>Cidade</th> 
+            <th>CEP</th> 
+            <th>Estado</th> 
+            <th>Ações</th>
+            
+        </tr>
+    </thead>
+    <tbody id="grid-body">
+        <!-- Loop para preencher a tabela com os dados -->
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.contato }}</td>
+            <td>{{ cliente.rg }}</td>
+            <td>{{ cliente.contato }}</td>
+            <td>{{ cliente.endereco }}</td>
+            <td>{{ cliente.bairro }}</td>
+            <td>{{ cliente.numero }}</td>
+            <td>{{ cliente.cidade }}</td>
+            <td>{{ cliente.cep }}</td>
+            <td>{{ cliente.estado }}</td>
+            <td>
+
+                <div class="d-flex gap-2">
+                    <div>
+                        <a href="/cliente/editar/{{cliente.id}}" class="btn btn-primary">Editar</a>
+                    </div>
+                    
+                    <div>
+                        {% block content %}
+                        <form id="delete-form" action="{% url 'cliente_excluir' cliente.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="button" onclick="showConfirmationDialogWithSweetAlert()">Excluir</button>
+                        </form>
+                        {% endblock %}
+
+                    </div>
+                </div>
+                    
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum cliente encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

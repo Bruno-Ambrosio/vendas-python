@@ -2,18 +2,18 @@
     <head>
         <!-- HEAD -->
         {% include 'recipes/application/head.html' %}
-        <title>Página de login</title>
+        <title>Página de edição de cliente</title>
     </head>
 <body>
     <!-- Cabeçalho -->
     {% include 'recipes/layout/header.html' %} 
     <!-- Conteúdo -->
-    {% include 'recipes/views/login.html' %}
+    {% include 'recipes/views/fornecedor/editar.html' %} 
     <!-- Rodapé -->
-    {% include 'recipes/layout/footer.html' %}
+    {% include 'recipes/layout/footer.html' %} 
     <!-- Scripts Globais -->
     {% include 'recipes/application/end.html' %}
     <!-- Scripts adicionais[...] -->
-    {% include 'recipes/partials/messages.html' %}
+    {% include 'recipes/views/cliente/scripts/cadastro.html' %}
 </body>
 </html>

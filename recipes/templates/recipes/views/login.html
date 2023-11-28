@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/login.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="{%url 'login'%}" method="POST">
+        {%csrf_token%}
+        <h2>Login</h2>
+        {% for field in form%}
+        <div class="input-field">
+            {{field}}
+          <label>{{field.label_tag}}</label>
+        </div>
+        {%endfor%}
+        <button>Entrar</button>
+        <div class="register">
+          <p>Ainda não tem conta? <a href="/usuario/cadastro">Registrar-se</a></p>
+        </div>
+        {% include 'recipes/partials/messages.html' %}
+        {% include 'recipes/partials/erros.html' %}
+      </form>
+    </div>
+  </body>
+</html>
+</div>

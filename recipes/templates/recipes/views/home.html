@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static './recipes/style.css/home_static.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.all.min.js" integrity="sha512-1SVc8wK7Y/XRAKRKfP09ILQmzJGwqq6m66x6mWa7r36j+/fa+3kz46s8kvELsGc52yo1as48nneFic7BZKMu8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" integrity="sha512-l1vPIxNzx1pUOKdZEe4kEnWCBzFVVYX5QziGS7zRZE4Gi5ykXrfvUgnSBttDbs0kXe2L06m9+51eadS+Bg6a+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    
+    <div class="Ever">
+        <div class="divBody">
+            <div class="vendas">
+                <a href="/" class="desc">Vendas</a>
+            </div>
+            <div class="divButtonsHead">
+                <div class="buttonPerfil">
+                    <button class="btn btn-outline" data-view-url="cliente/consulta">
+                        <img src="{% static '/images/IconPerfil.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <span>Clientes</span>
+                    </button>
+                </div>
+                <div class="buttonPerfil">
+                    <button class="btn btn-outline btn-success" data-view-url="cliente/cadastro">
+                        <span>Novo cliente</span>
+                    </button>
+                </div>
+                <div class="buttonFuncionarios" data-view-url="funcionario/consulta">
+                    <button class="btn btn-outline">
+                        <img src="{% static '/images/IconFuncionario.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <span>Funcionários</span>
+                    </button>
+                </div>
+                <div class="buttonPerfil">
+                    <button class="btn btn-outline btn-success" data-view-url="funcionario/cadastro">
+                        <span>Novo funcionário</span>
+                    </button>
+                </div>
+                <div class="fornecedores">
+                    <button class="btn btn-outline" data-view-url="fornecedor/consulta">
+                        <img src="{% static '/images/IconFornecedores.png' %}" alt="" style="width: 30px; height: 30px;">
+                        <span>Fornecedores</span>
+                    </button>
+                </div>
+                <div class="buttonPerfil" >
+                    <button class="btn btn-outline btn-success" data-view-url="fornecedor/cadastro">
+                        <span>Novo fornecedor</span>
+                    </button>
+                </div>
+            </div>
+            <div class="exit">
+                <div class="exitButton">
+                    <form action="{% url 'sair' %}" method="POST">
+                        {% csrf_token %}
+                    <button class="btn btn-outline">
+                        <img class="iconSair" src="{% static '/images/IconSair.png' %}" alt="" >
+                        <p>Sair</p>
+                    </button>
+                    {% include 'recipes/partials/messages.html' %}
+                    {% include 'recipes/partials/erros.html' %}
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="text">
+            <span href="" class="textTitle">
+                <span>Sistema de Vendas</span>
+                <span id="frame-name" class="subtext text-muted"></span>
+            </span>
+            <div class="content">
+                <iframe id="iframe" frameborder="0" class="iframe"></iframe>
+                <div class="no-iframe">
+                    <p>Parece que seu navegador não suporta iframes :(</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("[data-view-url]").on("click", function(){
+                const btn = $(this);
+                const iframe = $("#iframe");
+                const frameName = $("#frame-name");
+                const url = btn.data("view-url");
+                const name = btn.text().trim();
+                iframe.attr("src", url);
+                frameName.text(name);
+                console.log('url', url)
+                console.log('name', name)
+            })
+        });
+    </script>
+</body>
+</html>

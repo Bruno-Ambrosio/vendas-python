@@ -1,0 +1,15 @@
+<div>
+    {% for mensagem in messages %}
+        <script type="text/javascript">
+            function exibirMensagem(){
+                Swal.fire({
+                    icon: "success",
+                    title: "Tudo certo",
+                    text: "{{mensagem}}",
+                    timer: 1500
+                  });
+            }
+            exibirMensagem();
+        </script>
+    {% endfor %}
+</div>

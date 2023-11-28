@@ -1,0 +1,132 @@
+.divBody {
+    width: 15%;
+    min-width: 200px;
+    position: relative;
+}
+
+body {
+    background-color: #0000;
+}
+
+.Ever {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px 10px;
+    height: 100vh;
+}
+
+.divButtonsHead {
+    flex-direction: column;
+    display: flex;
+    gap: 8px;
+    height: 70vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.iconSair {
+    width: 30px;
+    height: 30px;
+}
+
+.btn {
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.vendas {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+    cursor: default;
+}
+
+.desc {
+    font-size: 40px;
+    cursor: default;
+    color: #b0b0b0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.exit {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #3b4754;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.exitButton {
+    width: 55%;
+}
+
+.buttonPerfil {
+    width: 100%;
+    align-items: baseline;
+}
+
+.text {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    background-color: hsl(212 18% 28% / 1);
+    border-radius: 15px;
+    padding: 5px 40px;
+    height: -webkit-fill-available;
+    position: relative;
+}
+
+.content {
+
+position: absolute;
+
+top: 60px;
+
+left: 40px;
+
+border-radius: 12px;
+
+overflow: hidden;
+
+width: calc(100% - 80px);
+
+height: calc(100% - 100px);
+
+background-color: #eee;
+}
+
+.textTitle {
+    font-size: 28px;
+    color: #b0b0b0;
+    cursor: default;
+    /* font-weight: bold; */
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.TextDesc {
+    cursor: default;
+    color: #b0b0b0;
+}
+
+.content iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+span#frame-name {
+    font-size: 24px;
+}
+
+.btn-outline:hover{
+    background-color: #3b4754;
+    color: #fff;
+}

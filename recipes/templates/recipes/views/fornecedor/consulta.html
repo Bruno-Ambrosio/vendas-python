@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Tabela de Fornecedores</title>
+    <link rel="stylesheet" href="{% static './recipes/style.css/consulta.css' %}" />
+    <script src="{% static 'recipes/scripts/confirma_excluir.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<h1>Lista de Fornecedores</h1>
+
+<table id="grid">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Contato</th>
+            <th>CNPJ</th>
+            <th>Contato</th> 
+            <th>Endereço</th> 
+            <th>Bairro</th> 
+            <th>Numero</th> 
+            <th>Cidade</th> 
+            <th>CEP</th> 
+            <th>Estado</th> 
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="grid-body">
+        <!-- Loop para preencher a tabela com os dados -->
+        {% for fornecedor in fornecedores %}
+        <tr>
+            <td>{{ fornecedor.nome }}</td>
+            <td>{{ fornecedor.email }}</td>
+            <td>{{ fornecedor.contato }}</td>
+            <td>{{ fornecedor.cnpj }}</td>
+            <td>{{ fornecedor.contato }}</td>
+            <td>{{ fornecedor.endereco }}</td>
+            <td>{{ fornecedor.bairro }}</td>
+            <td>{{ fornecedor.numero }}</td>
+            <td>{{ fornecedor.cidade }}</td>
+            <td>{{ fornecedor.cep }}</td>
+            <td>{{ fornecedor.estado }}</td>
+            <td>
+                <div class="d-flex gap-2">
+                    <div>
+                        <a href="/fornecedor/editar/{{fornecedor.id}}" class="btn btn-primary">Editar</a>
+                    </div>
+                    
+                    <div>
+                        {% block content %}
+                        <form id="delete-form" action="{% url 'fornecedor_excluir' fornecedor.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="button" onclick="showConfirmationDialogWithSweetAlert()">Excluir</button>
+                        </form>
+                        {% endblock %}
+
+                    </div>
+                </div>
+                    
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Nenhum fornecedor encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

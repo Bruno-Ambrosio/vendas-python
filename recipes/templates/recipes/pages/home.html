@@ -1,15 +1,18 @@
-{% include 'recipes/partials/head.html' %}
-
+<html>
+    <head>
+        <!-- HEAD -->
+        {% include 'recipes/application/head.html' %}
+        <title>Página inicial</title>
+    </head>
 <body>
-    {% include 'recipes/partials/header.html' %} 
-
-    <main class="main-content-container">
-        <div class="main-content main-content-list container">
-            {% include 'recipes/partials/recipe.html' %}
-        </div>
-    </main>
-
-    {% include 'recipes/partials/footer.html' %}
-
+    <!-- Cabeçalho -->
+    {% include 'recipes/layout/header.html' %} 
+    <!-- Conteúdo -->
+    {% include 'recipes/views/home.html' %} 
+    <!-- Rodapé -->
+    {% include 'recipes/layout/footer.html' %} 
+    <!-- Scripts Globais -->
+    {% include 'recipes/application/end.html' %}
+    <!-- Scripts adicionais[...] -->
 </body>
 </html>
