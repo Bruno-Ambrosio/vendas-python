@@ -31,12 +31,6 @@ def login(request):
     else:
         return redirect('/home')
 
-def sair(request):
-    if request.method == 'POST':
-        messages.success(request, 'Sessão encerrada.')
-        logout(request)
-        return redirect('/')
-
 def usuario_cadastro(request):
     if request.method == "POST":
         form = UserForms(request.POST)
@@ -58,6 +52,13 @@ def usuario_cadastro(request):
         )
     else:
         return redirect('/home')
+
+@login_required()
+def sair(request):
+    if request.method == 'POST':
+        messages.success(request, 'Sessão encerrada.')
+        logout(request)
+        return redirect('/')
 
 @login_required()
 def home(request):
